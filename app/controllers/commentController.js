@@ -1,9 +1,10 @@
 const { createComment, getCommentsByTask, deleteComment } = require('../models/commentModel');
 const { verifyProjectOwnership } = require('../utils/ownership'); // reuse this
+const  uploadToS3  = require('../utils/uploader');
 
 // Create Comment
 const handleCreateComment = async (req, res) => {
-  const { content, attachment, parent_id } = req.body;
+  const { content, parent_id } = req.body;
   const taskId = req.params.tId;
   const projectId = req.params.pId;
   const userId = req.user.id;
@@ -13,10 +14,25 @@ const handleCreateComment = async (req, res) => {
   }
 
   try {
+    //  verify user has access to project
     await verifyProjectOwnership(projectId, userId);
+
+    let attachment = null;
+    if (req.file) {
+      // Upload file to S3
+      // console.log("goni to get link for file");
+      
+      const s3Result = await uploadToS3(req.file);
+      const fileUrl = s3Result.params.Key;
+      
+      
+      attachment = fileUrl; // this is just location
+    }
+
     const comment = await createComment(content, attachment, userId, taskId, parent_id);
-    return res.status(201).json({ success: true, message:'Comment Added', comment });
+    return res.status(201).json({ success: true, message: 'Comment Added', comment });
   } catch (error) {
+    console.error(error.message);
     return res.status(500).json({ success: false, message: error.message });
   }
 };

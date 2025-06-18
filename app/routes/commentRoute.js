@@ -5,13 +5,14 @@ const {
   handleDeleteComment
 } = require('../controllers/commentController');
 const authMiddleware = require('../middleware/auth');
+const upload = require('../middleware/uploadMiddleware')
 
 const router = express.Router();
 
 router.use(authMiddleware);
 
-// Format: /api/comments/:pId/:tId/createComment
-router.post('/:pId/:tId/createComment', handleCreateComment);
+
+router.post('/:pId/:tId/createComment', upload.single('attachment'), handleCreateComment);
 router.get('/:pId/:tId/getAllComments', handleGetComments);
 router.delete('/:pId/:tId/deleteComment/:cId', handleDeleteComment);
 
