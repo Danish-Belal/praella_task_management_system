@@ -5,7 +5,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, ()=>{
+app.listen(PORT,  ()=>{
     console.log(`Praella server is running on Port ${PORT}`);
     
 })
