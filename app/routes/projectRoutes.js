@@ -5,7 +5,8 @@ const {
   handleCreateProject,
   handleGetProjects,
   handleUpdateProject,
-  handleDeleteProject
+  handleDeleteProject,
+  getProjectByIdReq
 } = require('../controllers/projectController');
 
 const authenticateUser = require('../middleware/auth');
@@ -17,5 +18,6 @@ router.post('/createProject', handleCreateProject);
 router.get('/getAllProject', handleGetProjects);
 router.put('/updateProject/:id', handleUpdateProject);
 router.delete('/deleteProject/:id', handleDeleteProject);
+router.get('/getProjectbyId/:id', getProjectByIdReq)
 
 module.exports = router;

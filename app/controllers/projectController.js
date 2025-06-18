@@ -105,9 +105,25 @@ const  handleDeleteProject = async (req, res) => {
   }
 };
 
+const getProjectByIdReq = async(req,res)=>{
+  projectId = req.params.id;
+  try{
+    const projectData = await getProjectById(projectId);
+    if(!projectData){
+      return res.status(404).json({ success: false, message: 'Project not found' });
+    }
+    return res.status(200).json({ success: true, message: "Project data",ProjectData: projectData });
+
+  }catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+
+}
+
 module.exports = {
   handleCreateProject,
   handleGetProjects,
   handleUpdateProject,
-  handleDeleteProject
+  handleDeleteProject,
+  getProjectByIdReq
 };
