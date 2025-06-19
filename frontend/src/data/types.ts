@@ -44,8 +44,3 @@ export interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
 }
-
-interface CommentFormProps {
-  onSubmit: (content: string, file?: File) => void;
-  onCancel: () => void;
-}
