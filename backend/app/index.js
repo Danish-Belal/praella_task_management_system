@@ -10,8 +10,9 @@ const commentRoutes = require('./routes/commentRoute');
 
 // Setup CORS before routes
 const allowedOrigins = [process.env.FRONTEND_URL];
+
 if (process.env.NODE_ENV !== 'production') {
-  allowedOrigins.push('http://localhost:5173');
+  allowedOrigins.push('http://localhost:5173'); // for local dev
 }
 
 app.use(cors({
