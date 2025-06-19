@@ -2,35 +2,24 @@ import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
-import { AuthAPI } from '../../api';
-// import { useNavigate } from 'react-router-dom';
 
 interface LoginFormProps {
+  onLogin: (email: string, password: string) => void;
   onSwitchToSignup: () => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToSignup }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onSwitchToSignup }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  // const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError('');
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
 
-  try {
-    const res = await AuthAPI.login({ email, password });
-    console.log('Login Success:', res);
-    //saving toekn in local storage
-    localStorage.setItem('token', res.token);
-    localStorage.setItem('user', JSON.stringify(res.user));
-    
-    // navigate('/dashboard');
-  } catch (err: any) {
-    setError(err.message);
-  }
-};
+      onLogin(email, password); 
+
+  };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-600 relative overflow-hidden">
@@ -55,6 +44,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToSignup }) => {
               required
             />
           </div>
+
           <div>
             <Label htmlFor="password" className="font-medium text-gray-700">
               Password
@@ -70,7 +60,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToSignup }) => {
 
           {error && <p className="text-red-600 text-sm text-center">{error}</p>}
 
-          <Button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white">
+          <Button
+            type="submit"
+            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white"
+          >
             Sign In
           </Button>
         </form>
