@@ -15,7 +15,12 @@ const signupUser = async (req, res) => {
 
     const hashed = await hashPassword(password);
     const user = await createUser(name,email, hashed);
-    res.status(201).json({ msg: 'Signup success', user });
+
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: '1d',
+    });
+    
+    res.status(201).json({ msg: 'Signup success', user,token });
   } catch (err) {
     res.status(500).json({ msg: 'Error during signup', error: err.message });
   }
@@ -38,7 +43,7 @@ const loginUser = async (req, res) => {
       success: true,
       message: 'Login successful',
       token,
-      user: { id: user.id, email: user.email },
+      user: { id: user.id, email: user.email, name: user.name },
     });
   } catch (err) {
     res.status(500).json({ msg: 'Error during login', error: err.message });
