@@ -9,7 +9,9 @@ const tasksRoutes = require('./routes/taskRoute');
 const commentRoutes = require('./routes/commentRoute');
 
 // Setup CORS before routes
+console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
 const allowedOrigins = [process.env.FRONTEND_URL];
+
 
 if (process.env.NODE_ENV !== 'production') {
   allowedOrigins.push('http://localhost:5173'); // for local dev
