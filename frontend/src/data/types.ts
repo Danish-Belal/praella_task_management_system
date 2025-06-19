@@ -37,10 +37,15 @@ export interface Comment {
   parent_id?: string | null;
   created_at: Date;
   updated_at: Date;
-  attachment?: string | null;
+  attachment?: string | null; 
 }
 
 export interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
+}
+
+interface CommentFormProps {
+  onSubmit: (content: string, file?: File) => void;
+  onCancel: () => void;
 }
