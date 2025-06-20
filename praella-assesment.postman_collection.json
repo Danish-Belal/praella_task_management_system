@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "5b6d3fde-0ec3-4a4b-b889-800cc8c6a531",
+		"name": "praella-assesment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26249913"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Praella comy\",\r\n    \"email\": \"praella@gmail.com\",\r\n    \"password\" : \"Danish*111\"\r\n\r\n \r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"email\": \"danishexplore019@gmail.com\",\r\n    \"password\" : \"Danish*111\"\r\n\r\n \r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login uat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"email\": \"danishexplore019@gmail.com\",\r\n    \"password\" : \"Danish*111\"\r\n\r\n \r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://praella-task-management-system-1.onrender.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"praella-task-management-system-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "createProject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"praella assesment\",\r\n    \"description\" : \"Complete assesment by tomorrow, TODO task Manager\"\r\n\r\n \r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects/createProject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"createProject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProjects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAzMzY4MTAsImV4cCI6MTc1MDQyMzIxMH0.j3lQjAg3u0fWUyQg5eMLjeBIEO-koWWaGiWRor8x08A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/projects/getAllProject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"getAllProject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update project",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"forgot to add description here\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects/updateProject/6b73d989-5c76-47df-a5cd-5420cf72b1fe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"updateProject",
+								"6b73d989-5c76-47df-a5cd-5420cf72b1fe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update project Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"forgot to add description here\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects/deleteProject/6b73d989-5c76-47df-a5cd-5420cf72b1fe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"deleteProject",
+								"6b73d989-5c76-47df-a5cd-5420cf72b1fe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get project by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"forgot to add description here\"\r\n\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects/getProjectbyId/069a3a85-714a-473a-9b65-59f4d20b0638",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"getProjectbyId",
+								"069a3a85-714a-473a-9b65-59f4d20b0638"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"secondt Task\",\r\n  \"description\": \"create user table and controllers\",\r\n  \"deadline\": \"2025-07-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/069a3a85-714a-473a-9b65-59f4d20b0638/createTask",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"069a3a85-714a-473a-9b65-59f4d20b0638",
+								"createTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAlltasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/getAllTasks/069a3a85-714a-473a-9b65-59f4d20b0638",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"getAllTasks",
+								"069a3a85-714a-473a-9b65-59f4d20b0638"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update tasks",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"in-progress\",\r\n    \"description\" : \"Working on it\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/069a3a85-714a-473a-9b65-59f4d20b0638/updateTask/0226af91-a302-4de0-acd5-c8854bd8a5de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"069a3a85-714a-473a-9b65-59f4d20b0638",
+								"updateTask",
+								"0226af91-a302-4de0-acd5-c8854bd8a5de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete tasks",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/069a3a85-714a-473a-9b65-59f4d20b0638/deleteTask/0226af91-a302-4de0-acd5-c8854bd8a5de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"069a3a85-714a-473a-9b65-59f4d20b0638",
+								"deleteTask",
+								"0226af91-a302-4de0-acd5-c8854bd8a5de"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "add a comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "Uploading file fro aws3 7",
+									"type": "text"
+								},
+								{
+									"key": "attachment",
+									"type": "file",
+									"src": "/C:/Users/Danish Belal/Downloads/unnamed.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/comments/069a3a85-714a-473a-9b65-59f4d20b0638/de70a10a-2f2a-4e41-b388-d00e4c5e76b6/createComment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comments",
+								"069a3a85-714a-473a-9b65-59f4d20b0638",
+								"de70a10a-2f2a-4e41-b388-d00e4c5e76b6",
+								"createComment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nested comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"content\": \"this is goin to be nested comment.\",\r\n  \"parent_id\" : \"6afee345-095b-4081-a164-1d7cd57fd7fc\"\r\n  \r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/comments/069a3a85-714a-473a-9b65-59f4d20b0638/de70a10a-2f2a-4e41-b388-d00e4c5e76b6/createComment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comments",
+								"069a3a85-714a-473a-9b65-59f4d20b0638",
+								"de70a10a-2f2a-4e41-b388-d00e4c5e76b6",
+								"createComment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get comment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAzMzY4MTAsImV4cCI6MTc1MDQyMzIxMH0.j3lQjAg3u0fWUyQg5eMLjeBIEO-koWWaGiWRor8x08A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/comments/069a3a85-714a-473a-9b65-59f4d20b0638/de70a10a-2f2a-4e41-b388-d00e4c5e76b6/getAllComments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comments",
+								"069a3a85-714a-473a-9b65-59f4d20b0638",
+								"de70a10a-2f2a-4e41-b388-d00e4c5e76b6",
+								"getAllComments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get comment Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmNjY2ZWE3LTZlNGEtNGI4Ni1iM2Q0LTg2Njg2NTMzZDBjMyIsImVtYWlsIjoiZGFuaXNoZXhwbG9yZTAxOUBnbWFpbC5jb20iLCJpYXQiOjE3NTAyNDMyNzMsImV4cCI6MTc1MDMyOTY3M30.cBWWauaGCq-5j0Bv61Xe_unVRJWVAEftjESPGAEUTdk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"content\": \"This is my comment on this task.\"\r\n  \r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/comments/069a3a85-714a-473a-9b65-59f4d20b0638/de70a10a-2f2a-4e41-b388-d00e4c5e76b6/deleteComment/efa1b75f-4198-468f-a222-bd1c9063d499",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comments",
+								"069a3a85-714a-473a-9b65-59f4d20b0638",
+								"de70a10a-2f2a-4e41-b388-d00e4c5e76b6",
+								"deleteComment",
+								"efa1b75f-4198-468f-a222-bd1c9063d499"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
