@@ -43,7 +43,7 @@ A full-stack task management system with project-based task creation, authentica
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/praella-task-management-system.git
+git clone https://github.com/Danish-Belal/praella_task_management_system
 cd praella-task-management-system/backend
 
 ```
@@ -90,7 +90,7 @@ cd ../frontend
 ### 3. Create Environment File
 Inside the /frontend directory, create a file named .env and add the following content:
 ```
-VITE_API_BASE_URL=http://localhost:3000/
+VITE_API_BASE_URL=http://localhost:3000/api
 ```
 
 ### 5. Start the Development Server
@@ -156,7 +156,7 @@ Use the following credentials **only on the deployed URLs**:
   - Priority, deadline, and status support
 
 - 💬 **Comments** (Only project owner can)
-  - Add comments to tasks
+  - Add comments to tasks and can also attach file (Max-5MB)
   - Delete comments
 
 - 🔔 **Toasts**
@@ -176,12 +176,14 @@ I structured the backend using the **MVC pattern** and focused on keeping contro
 - Secure authentication with role-based token handling  
 - Frontend structure with reusable and modular components  
 - Neatly managed forms, validations, and UI feedback (toast)
-
+- attaching files on aws s3 bucket and retriving it.
+  
 ---
 
 ### ❌ What Could Be Improved
 
-- Didn’t implement CI/CD pipelines or custom domain setup 
+- Multiple users can be assigned a single project to work together.
+- Didn’t implement CI/CD pipelines or custom domain setup
 - Self-hosted deployment flow (with own infrastructure) was not completed  
 
 ✅ Note: File upload to **AWS S3** is already implemented and tested successfully.
@@ -193,6 +195,7 @@ I structured the backend using the **MVC pattern** and focused on keeping contro
 - CORS configuration issues between frontend (Vercel) and backend (Render)
 - Managing AWS credentials securely across environments
 - File upload region mismatch and S3 bucket permission handling in dev vs prod
+- Sort of time, to many thigs to imporve.
 
 ---
 
