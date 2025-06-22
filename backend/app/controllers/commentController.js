@@ -21,12 +21,9 @@ const handleCreateComment = async (req, res) => {
     if (req.file) {
       // Upload file to S3
       // console.log("goni to get link for file");
-      
-      const s3Result = await uploadToS3(req.file);
-      const fileUrl = s3Result.params.Key;
-      
-      
-      attachment = fileUrl; // this is just location
+      //storing full url.
+      const { signedUrl } = await uploadToS3(req.file);
+      attachment = signedUrl;
     }
 
     const comment = await createComment(content, attachment, userId, taskId, parent_id);
@@ -45,13 +42,13 @@ const handleGetComments = async (req, res) => {
   try {
     await verifyProjectOwnership(pId, userId);
     const comments = await getCommentsByTask(tId);
-    for (const comment of comments) {
-      if (comment.attachment) {
-        console.log("Comments have attachements.");
+    // for (const comment of comments) {
+    //   if (comment.attachment) {
+    //     console.log("Comments have attachements.");
         
-        comment.attachment = await getSignedS3Url(comment.attachment);
-      }
-    }
+    //     comment.attachment = await getSignedS3Url(comment.attachment);
+    //   }
+    // }
     return res.status(200).json({ success: true, comments });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });

@@ -7,18 +7,27 @@ const { GetObjectCommand } = require("@aws-sdk/client-s3");
 const uploadToS3 = async (file) => {
   const fileName = `${Date.now()}-${file.originalname}`;
   console.log("File name", fileName);
+  const Key =  `uploads/${fileName}`
   
  const upload = new Upload({
   client: s3,
   params: {
     Bucket: process.env.S3_BUCKET,
-    Key: `uploads/${fileName}`,
+    Key: Key,
     Body: file.buffer,
     ContentType: file.mimetype,
   }
 });
     await upload.done();
-    return upload;
+    // Get signed URL for permanent storage
+  const command = new GetObjectCommand({
+    Bucket: process.env.S3_BUCKET,
+    Key: Key,
+  });
+
+  const signedUrl = await getSignedUrl(s3, command, { expiresIn: 7 * 24 * 60 * 60 }); // 7 days
+
+  return { Key, signedUrl };
 };
 
 const getSignedS3Url = async (key) => {
