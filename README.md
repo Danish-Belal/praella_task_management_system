@@ -9,22 +9,31 @@ A full-stack task management system with project-based task creation, authentica
 - 🖥️ **Frontend**: [https://praella-task-management-system.vercel.app](https://praella-task-management-system.vercel.app)
 - 🔗 **Backend**: [https://praella-task-management-system-1.onrender.com](https://praella-task-management-system-1.onrender.com)
 
+
+### 🌐 Custom Domain (AWS)
+
+- 🖥️ **Frontend (Custom - Vercel)**: [https://praella-task-managment-ui.score-book.com](https://praella-task-managment-ui.score-book.com)
+- 🔗 **Backend (Custom - AWS EC2 + NGINX + PM2)**: [https://praella-task-managment.score-book.com](https://praella-task-managment.score-book.com)
+
 ---
 ## 🛠️ Tech Stack Used
 
 ### 🔧 Backend
 
-- **Node.js** `v18`
+- **Node.js** `v20.5.1`
 - **Express** `v5.1.0`
-- **PostgreSQL** (via `pg`)
-- **bcrypt** `v6.0.0`
-- **jsonwebtoken** `v9.0.2` for Authentication
-- **multer** & **multer-s3** for file upload
-- **AWS SDK** `v2.1692.0` for S3 integration
-- **dotenv** for environment variables
-- **CORS**, **express-validator**
-- **nodemon**, **jest**, **supertest**
-- **node-pg-migrate** for DB migrations
+- **PostgreSQL** via `pg@8.16.0`
+- **bcrypt** `6.0.0`
+- **jsonwebtoken** `9.0.2` (for Authentication)
+- **multer** `2.0.1` & **multer-s3** `3.0.1` (for file uploads)
+- **AWS SDK v2** `2.1692.0` and **AWS SDK v3** `@aws-sdk/client-s3@3.832.0`, `@aws-sdk/s3-request-presigner@3.832.0`
+- **dotenv** `16.5.0` (for environment variables)
+- **cors** `2.8.5`, **express-validator** `7.2.1`
+- **nodemon** `3.1.10`
+- **jest** `30.0.0`, **supertest** `7.1.1`
+- **node-pg-migrate** `7.7.1`
+
+
 
 ### 🎨 Frontend
 
@@ -38,12 +47,12 @@ A full-stack task management system with project-based task creation, authentica
 
 ---
 
-## ⚙️ Project Setup Instructions
+## ⚙️ Project Setup Instructions (locally)
 ### 🔧 Backend Setup
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Danish-Belal/praella_task_management_system
+git clone https://github.com/Danish-Belal/praella_task_management_system.git
 cd praella-task-management-system/backend
 
 ```
@@ -203,6 +212,184 @@ I structured the backend using the **MVC pattern** and focused on keeping contro
 
 **~14 to 16 hours**, including development, testing, and deployment.
 
+---
+
+
+## 🚀 Self-Hosting on AWS (Backend Deployment Guide)
+
+Want to host the backend on your own cloud infrastructure? Follow this guide to deploy the Express backend on an AWS EC2 instance with a custom domain, SSL, and persistent process management.
+
+---
+
+### ✅ Prerequisites
+
+- A GitHub repo for your backend
+- A domain name (e.g., from Namecheap)
+- AWS account with EC2 permissions
+- PEM key file for SSH login
+
+---
+
+### 🔧 1. Create an EC2 Instance (Ubuntu)
+
+- Launch a new EC2 instance (Ubuntu 22.04 LTS)
+- Set inbound rules to allow ports: **22 (SSH), 80 (HTTP), 443 (HTTPS)**
+- Download and use the `.pem` key to connect:
+
+```bash
+ssh -i your-key.pem ubuntu@your-ec2-public-ip
+```
+
+### 📦 2. Install Required Software
+```
+  sudo apt update && sudo apt upgrade -y
+  
+  # Install Node.js & npm
+  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+  sudo apt install -y nodejs
+  
+  # Install Git
+  sudo apt install git
+  
+  # Install PM2 globally
+  npm install -g pm2
+
+```
+
+### 📁 3. Clone Your Backend Repository
+
+```
+ git clone https://github.com/Danish-Belal/praella_task_management_system.git
+ cd praella-task-management-system/backend
+```
+### 🔐 4. Add Environment Variables
+   Create a .env file:
+ ```
+touch .env
+nano .env
+```
+
+Add Secrets in .env
+```
+DATABASE_URL="your_postgresql_connection_string"  (from neon db)
+  PORT=3000
+  JWT_SECRET=your_jwt_secret
+  
+  AWS_ACCESS_KEY_ID=your_aws_access_key
+  AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+  AWS_REGION=your_aws_region
+  S3_BUCKET=your_bucket_name
+  
+ # FRONTEND_URL=http://localhost:5173    #uncomment this if you want to run from local.
+ # NODE_ENV=DEVELOPMENT  (for deploy, set production)
+
+ FRONTEND_URL= your vercel frontend link, your custom domain frontend link.  #if you want to run your frontend from a hosted link
+ NODE_ENV=Production
+```
+## 📦 5. Install Dependencies
+
+```
+npm install
+
+```
+
+## 🚀 6. Start Backend with PM2
+```
+pm2 start server.js --name backend
+pm2 startup
+pm2 save
+
+```
+
+## 🌐 7. Setup NGINX Reverse Proxy
+```
+sudo apt install nginx
+sudo nano /etc/nginx/nginx.conf
+
+```
+Paste this configuration:
+```
+events {}
+
+http {
+  server {
+    listen 80;
+    server_name your-subdomain.yourdomain.com;
+
+    location / {
+      proxy_pass http://localhost:3000;    
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_set_header Host $host;
+      proxy_cache_bypass $http_upgrade;
+    }
+  }
+}
+
+```
+
+Test & reload:
+```
+sudo nginx -t
+sudo systemctl reload nginx
+
+```
+
+## 🔒 8. Add HTTPS with Certbot
+```
+sudo apt install certbot python3-certbot-nginx -y
+sudo certbot --nginx -d your-subdomain.yourdomain.com
+
+```
+
+Follow prompts to complete SSL setup
+
+Certbot auto-renews the certificate every 90 days
+
+## 🌍 9. Connect Domain to AWS
+  Go to your domain provider (e.g., Namecheap):
+   
+```
+ Add an A Record:
+Host: your-subdomain
+Value: your-ec2-public-ip
+TTL: Automatic
+```
+
+## 🧪 10. Verify Everything
+```
+curl -I https://your-subdomain.yourdomain.com
+curl http://localhost:3000
+
+```
+
+## 🔁 Restart on Changes
+```
+pm2 restart backend
+
+```
+
+
+## ✅ Deployment Summary
+
+You’ve now successfully deployed your backend to AWS with the following setup:
+
+- **Custom Domain**
+- **HTTPS (SSL)** via Let’s Encrypt
+- **NGINX** as a Reverse Proxy
+- **PM2** for Node.js Process Management
+
+---
+
+### ✅ Next Steps
+
+- ✅ Hit your backend URL in the browser or via Postman  
+- 🌐 Example: `https://your-subdomain.yourdomain.com/api/auth/login`  
+- 🔐 Test login with valid credentials to confirm everything works
+
+    
+---
 ### 🧑‍💻 Built & Developed By
 
 Crafted with focus, clean code, and attention to detail by **Danish Belal**.
