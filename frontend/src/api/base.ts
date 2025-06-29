@@ -1,4 +1,9 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import{ getBaseUrl } from '../../utils/healper';
+
+// const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = getBaseUrl();
+console.log("BASE URL", BASE_URL);
+
 
 const apiRequest = async (
   url: string,

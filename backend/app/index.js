@@ -10,7 +10,7 @@ const commentRoutes = require('./routes/commentRoute');
 
 // Setup CORS before routes
 console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
-const allowedOrigins = [process.env.FRONTEND_URL];
+const allowedOrigins = process.env.FRONTEND_URL.split(',');
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -22,6 +22,7 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('❌ CORS blocked origin:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
