@@ -7,13 +7,16 @@ A full-stack task management system with project-based task creation, authentica
 ## 🌍 Live URLs
 
 - 🖥️ **Frontend**: [https://praella-task-management-system.vercel.app](https://praella-task-management-system.vercel.app)
+- (May experience occasional load issues due to limitations of free-tier hosting)
 - 🔗 **Backend**: [https://praella-task-management-system-1.onrender.com](https://praella-task-management-system-1.onrender.com)
 
 
 ### 🌐 Custom Domain (AWS)
 
 - 🖥️ **Frontend (Custom - Vercel)**: [https://praella-task-managment-ui.score-book.com](https://praella-task-managment-ui.score-book.com)
+- (Runs smoothly and loads faster as it's connected to our custom AWS infrastructure)
 - 🔗 **Backend (Custom - AWS EC2 + NGINX + PM2)**: [https://praella-task-managment.score-book.com](https://praella-task-managment.score-book.com)
+- (Deployed on our own AWS EC2 instance with optimized performance and uptime)
 
 ---
 ## 🛠️ Tech Stack Used
@@ -192,8 +195,8 @@ I structured the backend using the **MVC pattern** and focused on keeping contro
 ### ❌ What Could Be Improved
 
 - Multiple users can be assigned a single project to work together.
-- Didn’t implement CI/CD pipelines or custom domain setup
-- Self-hosted deployment flow (with own infrastructure) was not completed  
+- Didn’t implement CI/CD pipelines or custom domain setup   (In Progress)
+- Self-hosted deployment flow (with own infrastructure) was not completed    (Done Now)
 
 ✅ Note: File upload to **AWS S3** is already implemented and tested successfully.
 
