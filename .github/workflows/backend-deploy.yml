@@ -24,8 +24,8 @@ jobs:
 
       - name: Deploy backend to AWS
         run: |
-          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-            cd praella_task_management_system/backend
+          ssh -i ~/.ssh/deploy-key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+            cd ~/praella_task_management_system/backend
             git pull origin main
             npm install
             pm2 restart backend || pm2 start server.js --name backend
