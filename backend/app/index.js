@@ -31,6 +31,17 @@ app.use(cors({
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send(`
+    <h2>✅ Welcome to Praella Task Management Backend</h2>
+    <p>🌐 Frontend URLs:</p>
+    <ul>
+      <li><a href="https://praella-task-management-system.vercel.app" target="_blank">Vercel Frontend</a></li>
+      <li><a href="https://praella-task-managment-ui.score-book.com" target="_blank">Custom Domain Frontend</a></li>
+    </ul>
+  `);
+});
+
 // Now register your routes after CORS setup
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
