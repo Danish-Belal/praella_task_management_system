@@ -189,13 +189,15 @@ I structured the backend using the **MVC pattern** and focused on keeping contro
 - Frontend structure with reusable and modular components  
 - Neatly managed forms, validations, and UI feedback (toast)
 - attaching files on aws s3 bucket and retriving it.
+- Hosred on AWS ec2 instancw with custome domain.
+- Implemented ci/ci pipeline to auto deploy on aws machine
   
 ---
 
 ### ❌ What Could Be Improved
 
 - Multiple users can be assigned a single project to work together.
-- Didn’t implement CI/CD pipelines or custom domain setup   (In Progress)
+- Didn’t implement CI/CD pipelines or custom domain setup   (In Progress) --> (Done now) Added an ci/cd pipeline to auto deploy whenever backend files changes.)
 - Self-hosted deployment flow (with own infrastructure) was not completed    (Done Now)
 
 ✅ Note: File upload to **AWS S3** is already implemented and tested successfully.
